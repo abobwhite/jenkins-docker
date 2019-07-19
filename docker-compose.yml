@@ -10,6 +10,7 @@ services:
     environment:
       - 'JENKINS_USERNAME=admin'
       - 'JENKINS_PASSWORD=your-password-here'
+      - 'TZ=America/Chicago'
     volumes:
       - /home/jenkins/data:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
