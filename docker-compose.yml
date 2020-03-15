@@ -4,7 +4,7 @@ services:
     container_name: jenkins
     image: 'abobwhite/jenkins-docker:latest'
     ports:
-      - '8080:8080'
+      - '80:8080'
       - '8443:8443'
       - '50000:50000'
     environment:
@@ -12,5 +12,7 @@ services:
       - 'JENKINS_PASSWORD=your-password-here'
       - 'TZ=America/Chicago'
     volumes:
-      - /home/jenkins/data:/var/jenkins_home
+      - jenkins_data:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
+volumes:
+  jenkins_data:
