@@ -6,4 +6,13 @@ This Jenkins instance, by default:
 * Pre-installs a set of plugins list in `plugins.txt`
 * Comes installed with Docker CE and Docker Compose
 
-If you'd like to customize the image itself (docker version, plugins list, etc), just make your changes and then run `docker build -t your-image-name .`
+### Customizing
+If you'd like to customize the image itself (docker version, plugins list, etc), just make your changes and then run `docker build -t your-image-name .` and `docker push your-image-name`. Make sure to replace the jenkins image in `docker-compose.yml` to reflace `image: 'your-image-name'`
+
+### Getting Plugins from Existing Jenkins
+To get the list of plugins from an existing Jenkins instance, use the following where `$JENKINS_HOME` are your Jenkins credentials and address. The list will be output to a file `plugins.txt`.
+
+```commandline
+$JENKINS_HOME = username:password@jenkinshost.com:port
+curl -sSL "http://$JENKINS_HOME/pluginManager/api/xml?depth=1&xpath=/*/*/shortName|/*/*/version&wrapper=plugins" | perl -pe 's/.*?<shortName>([\w-]+).*?<version>([^<]+)()(<\/\w+>)+/\1 \2\n/g'|sed 's/ /:/' > plugins.txt
+```
