@@ -3,6 +3,7 @@ services:
   jenkins:
     container_name: jenkins
     image: 'abobwhite/jenkins-docker:latest'
+    restart: always
     ports:
       - '80:8080'
       - '8443:8443'
