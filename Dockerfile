@@ -7,7 +7,9 @@ RUN apt-get update -qq && \
       ca-certificates \
       curl \
       gnupg2 \
-      software-properties-common && \
+      software-properties-common \
+      python-pip \
+      python-dev && \
     curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - && \
     add-apt-repository \
      "deb [arch=amd64] https://download.docker.com/linux/debian \
@@ -18,7 +20,8 @@ RUN apt-get update -qq && \
     apt-get clean && \
     usermod -aG docker jenkins && \
     curl -L "https://github.com/docker/compose/releases/download/1.26.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && \
-    chmod +x /usr/local/bin/docker-compose
+    chmod +x /usr/local/bin/docker-compose && \
+    pip install 'ansible==2.9.*'
 
 USER jenkins
 

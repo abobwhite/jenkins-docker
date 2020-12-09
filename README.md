@@ -7,6 +7,7 @@ This Jenkins instance, by default:
 * Comes installed with Docker CE and Docker Compose
 * Exposes Jenkins on port 80
 * Uses a standard docker volume as opposed to a bind mount
+* Pre-installs Ansible 2.9.x
 
 ### Customizing
 If you'd like to customize the image itself (docker version, plugins list, etc), just make your changes and then run `docker build -t your-image-name .` and `docker push your-image-name`. Make sure to replace the jenkins image in `docker-compose.yml` to reflace `image: 'your-image-name'`
