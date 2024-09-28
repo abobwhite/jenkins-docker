@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:lts
+FROM --platform=linux/amd64 jenkins/jenkins:lts
 MAINTAINER abobwhite
 USER root
 
@@ -19,9 +19,9 @@ RUN apt-get update -qq && \
     apt-get install docker.io -y && \
     apt-get clean && \
     usermod -aG docker jenkins && \
-    curl -L "https://github.com/docker/compose/releases/download/v2.11.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && \
+    curl -L "https://github.com/docker/compose/releases/download/v2.29.7/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && \
     chmod +x /usr/local/bin/docker-compose && \
-    pip install 'ansible==2.9.*'
+    pip install 'ansible==2.9.*' --break-system-packages
 
 USER jenkins
 
